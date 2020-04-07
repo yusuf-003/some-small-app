@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			My Page
+		</title>
+		<script>
+			function doSomething(x){
+				var a = document.getElementById(x);
+				a.style.background = "green";
+				a.style.color = "white";
+				a.style.left = 200+"px";
+			}
+			
+			function imageRoll(){
+			  var a = document.getElementById('pic');
+			  a.innerHTML = "<img src='yusuf2.jpg'style='height:100px; width:100px;' >";
+			  
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1" style="position: absolute; background:red; left:50px; transition: left 1s linear 0s; ">Now you have something</div><br>
+		<button onclick="doSomething('div1')">Click me</button><br><br>
+		
+		<div id="div2" style="position: absolute; background:red; left:50px; transition: left 1s linear 0s; ">Now you have something</div><br>
+		<button onclick="doSomething('div2')">Click me</button><br><br>
+		
+		<div id="div3" style="position: absolute; background:red; left:50px; transition: left 1s linear 0s; ">Now you have something</div><br>
+		<button onclick="doSomething('div3')">Click me</button>
+		<br><br>
+		    <div id="pic" style="height:100px; width:100px; border: 1px solid #eee;" onmouseover="imageRoll()">
+		    <a href="#"><img src= "yusuf.jpg" height="100" width="100" alt="yusuf.jpg"></a>
+			</div>
+		<br><br>
+		<a href="menupage.html">Menu page</a>
+		
+		
+		
+		<div id="div4" style="position: absolute; background:red; left:50px; transition: left 1s linear 0s; ">Now you have something</div><br>
+		<button onclick="doSomething('div4')">Click me</button><br><br>
+		
+
+	</body>
+</html>

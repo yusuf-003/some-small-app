@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			My Page
+		</title>
+		<script>
+			
+			function showHideMenu(x,y){
+				var x = document.getElementById(x);
+				var y = document.getElementById(y);
+				
+				if(y.style.height == 130+"px"){
+					y.style.height = 0+"px"
+					x.innerHTML = "[+]";
+				}else{
+					y.style.height = 130+"px"
+					x.innerHTML = "[-]";
+				}
+			
+			}
+			
+			function _(x){
+				return document.getElementById(x);
+			}
+			
+			function checkFormValidation(){
+				var u = _("u");
+				var uc = _("uc");
+				var p = _("p");
+				var pc = _("pc");
+				
+				if(u.value == "" && p.value == ""){
+					uc.innerHTML = "Username must be filled.";
+					uc.style.color = "red";
+					
+					pc.innerHTML = "Password must be filled.";
+					pc.style.color = "red";
+				
+				}else if(u.value == ""){
+					uc.innerHTML = "Username must be filled.";
+					uc.style.color = "red";
+
+				}else if (p.value == ""){
+					pc.innerHTML = "Password must be filled.";
+					pc.style.color = "red";
+				}
+				
+			}
+			
+			function clearMsg(x){
+				_(x).innerHTML = "";
+			}
+			
+			//DYNAMIC UPDATING SELECT
+			function populateS2(){
+				var s1 = _("s1");
+				var s2 = _("s2");
+				
+				s2.innerHTML = ""; //reset s2
+				if(s1.value == "dcga"){
+					var optionA = ['|','intro|Intro','dtp|DTP','spa|SPA','dbase|DBASE'];
+				}else if(s1.value == "dcgd"){
+					var optionA = ['|','intro|Intro','dtp|DTP','corel1|Corel1','corel2|Corel2'];
+				}else if(s1.value == "dcmn"){
+					var optionA = ['|','intro|Intro','dtp|DTP','maint|Maintenance','netw|Networking'];
+				}else if(s1.value == "webdes"){
+					var optionA = ['|','html|HTML','css|CSS','php|PHP','mysqli|mySQL','java|JavaScript'];
+				}else if(s1.value == "cert"){
+					var optionA = ['|','cert|Certificate'];
+				}
+				
+				
+				else {
+					s2.innerHTML = "";
+				}
+				
+				for(var option in optionA){
+					var pair = optionA[option].split("|");
+					var newOption = document.createElement("option");
+					newOption.value = pair[0];
+					newOption.innerHTML = pair[1];
+					s2.options.add(newOption);
+				}
+				
+				
+			}
+		</script>
+	
+	<style>
+		#menu {
+			width: 200px;
+			background: #efefef;
+			padding: 30px;
+			position:absolute;
+			top: 10px;
+		}
+		.cn {
+			color: #5678ab;
+			cursor: pointer;
+		}
+		.content {
+			height: 0px;
+			transition: height 0.3s linear 0s;
+			overflow: hidden;
+		}
+		.content > div {
+			padding: 5px;
+			background: #fafafa;
+			border: 1px solid #ccc;
+		}
+		#formcontainer {
+			margin: 150px auto;
+			width: 300px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			background: #ecf;
+			padding: 30px;
+		}
+	</style>
+	
+	</head>
+	
+	
+	
+	<body>
+		<div id="menu">
+			<div id="dcga">
+				<div class="cn" onclick="showHideMenu('dcga_h','dcga_c')"><span id="dcga_h">[+]</span> DCGA COURSE</div>
+				<div class= "content" id="dcga_c">
+					<div>Intro</div>
+					<div>DTP</div>
+					<div>SPA</div>
+					<div>DBase</div>
+				</div>
+			</div>
+			
+			<div = id="dcgd">
+				<div class="cn" onclick="showHideMenu('dcgd_h','dcgd_c')"><span id="dcgd_h">[+]</span> DCGD COURSE</div>
+				<div class= "content" id="dcgd_c">
+					<div>Intro</div>
+					<div>DTP</div>
+					<div>COREL 1</div>
+					<div>COREL 2</div>
+				</div>
+			</div>
+			
+			<div = id="dcmn">
+				<div class="cn" onclick="showHideMenu('dcmn_h','dcmn_c')"><span id="dcmn_h">[+]</span> DCMN COURSE</div>
+				<div class= "content" id="dcmn_c">
+					<div>Intro</div>
+					<div>DTP</div>
+					<div>Maintenance</div>
+					<div>Networking</div>
+				</div>
+			</div>
+			
+			<div = id="webprog">
+				<div class="cn" onclick="showHideMenu('web_h','web_c')"><span id="web_h">[+]</span> WEB DESIGN</div>
+				<div class= "content" id="web_c">
+					<div>HTML</div>
+					<div>CSS</div>
+					<div>JAVASCRIPT</div>
+					<div>PHP/MYSQLI</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="formcontainer">
+			<h2>Login</h2>
+			Select Program:
+
+			<select id="s1" onchange="populateS2()">
+				<option value="select">Select</option>
+				<option value="dcga">DCGA</option>
+				<option value="dcgd">DCGD</option>
+				<option value="dcmn">DCMN</option>
+				<option value="webdes">WEB DES</option>
+				<option value="cert">CERT</option>
+			</select><br><br>
+			Select Course:
+			<select id="s2"></select>
+			<br><br>
+			
+			<form method="post" action="" onsubmit="return false;">
+				<input type="text" id="u" name="u" placeholder="Username..." onfocus="clearMsg('uc')"><span id="uc"></span><br><br>
+				<input type="password" id="p" name="p" placeholder="Password..." onfocus="clearMsg('pc')"><span id="pc"></span><br>
+				<input type="submit" value="Login" onclick="checkFormValidation()">
+			</form>
+		</div>
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
